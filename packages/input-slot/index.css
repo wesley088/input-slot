@@ -1,0 +1,102 @@
+.input-slot-main {
+    min-height: 76px;
+    cursor: text;
+    border-radius: 5px;
+    border: 1px solid #DCDFE6;
+    padding: 8px;
+    font-size: 14px;
+}
+.input-slot-edit{
+    min-height: 60px;
+}
+
+.input-slot-tag{
+    display: inline-block;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: rgb(37 99 235);
+    background-color: #EEF1FF;
+}
+.input-slot-tag-placeholder{
+    position: relative;
+    width: 0;
+    height: 0;
+    overflow: visible;
+}
+.input-slot-tag-placeholder.active {
+    visibility: hidden;
+}
+.input-slot-tag-value{
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: max-content;
+    opacity: 0.3;
+    color: rgb(96 165 250);
+}
+.input-slot-selector {
+    position: relative;
+    border-radius: 5px;
+    background: #EEF1FF;
+    color: rgb(37 99 235);
+}
+.input-slot-selector-value{
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    gap: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+
+}
+.input-slot-selector-icon{
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.input-slot-selector-icon.rotate {
+    transform: rotate(180deg);
+}
+.input-slot-selector-options{
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    z-index: 99;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    color: #000;
+}
+.input-slot-selector-option{
+    min-width: 150px;
+    white-space: nowrap;
+    padding: 12px;
+    font-size: 12px;
+}
+.input-slot-selector-option.active {
+    background-color: #F6F8FA;
+    color: rgb(37 99 235);
+}
+.input-slot-selector-option:hover {
+    background-color: #F6F8FA;
+    color: rgb(37 99 235);
+}
+.pl-deliver{
+    padding-left: 0.1px;
+}
+.inline-flex{
+    display: inline-flex;
+}
+
+
+:focus-visible {
+    outline: none;
+}
+div, span {
+    box-sizing: border-box;
+}
