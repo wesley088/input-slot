@@ -1,50 +1,89 @@
-# React + TypeScript + Vite
+# input-slot【输入插槽】
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+【input-slot】主要使用slat,react实现的可在输入框添加自定义标签和自定义选择器的组件
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## API
 
-## Expanding the ESLint configuration
+|属性 | 类型 | 是否必传 | 默认值
+| --- | --- | --- | --- |
+|`template`  | `Array` | `是` | -
+|`placeholder`  | `String`  | `否` | ''
+|`selectProps`  | `{ iconUrl: string; className: string; }`  | `否` | -
+|`tagProps`  | `{ className: string; placeholderClassName: string; }`  | `否` | -
+|`onChange`  | `(e) => void`  | `是` | -
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 示例代码
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
 ```
+import { Descendant,  Text as SlateText } from 'slate';
+import InputSolt from 'input-slot'
+type CustomElement = Descendant & {
+    type?: string;
+    field?: string;
+    placeholder?: string;
+    options?: string[];
+    selected?: string;
+    children: {
+      type?: string;
+      text?: string;
+      placeholder?: string;
+      children?: SlateText[];
+      field?: string;
+      options?: string[];
+      selected?: string;
+    }[];
+  };
+function App() {
+const template = [
+    {
+        "type": "paragraph",
+        "children": [
+            {
+                "text": "Your coaching goal is a group of "
+            },
+            {
+                "type": "selector",
+                "field": "f1",
+                "options": [
+                    "Pre-primary education",
+                    "Primary education",
+                    "Secondary education"
+                ],
+                "selected": "Pre-primary education",
+                "children": [
+                    {
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "text": "users, and you are skilled in accurately answering users'"
+            },
+            {
+                "type": "tag",
+                "placeholder": "please enter subject",
+                "children": [
+                    {
+                        "text": ""
+                    }
+                ]
+            },
+            {
+                "text": "knowledge point questions. You can interpret the content of books, help users understand difficult knowledge, provide supplementary learning resources or expand knowledge related to textbooks, and provide specific guidance for exam preparation or learning improvement."
+            }
+        ]
+    }
+]
+const handleChange = (value: CustomElement[]) => {
+    console.log(value)
+}
+  return (
+    <InputSolt template={template} onChange={handleChange} />
+  )
+}
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+export default App
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```

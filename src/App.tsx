@@ -1,6 +1,6 @@
 
 import { Descendant,  Text as SlateText } from 'slate';
-import InputSolt from './../packages/input-slot'
+import InputSolt from 'input-slot'
 type CustomElement = Descendant & {
     type?: string;
     field?: string;
@@ -62,9 +62,7 @@ const handleChange = (value: CustomElement[]) => {
     console.log(value)
 }
   return (
-    <>
     <InputSolt template={template} onChange={handleChange} />
-    </>
   )
 }
 
